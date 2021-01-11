@@ -1,11 +1,24 @@
 <template>
   <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    {{info}}
   </div>
   <router-view/>
 </template>
-
+<script>
+import axios from 'axios'
+export default {
+  data () {
+    return {
+      info: null
+    }
+  },
+  mounted () {
+    axios
+      .get('')
+      .then(response => (this.info = response.data))
+  }
+}
+</script>
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
