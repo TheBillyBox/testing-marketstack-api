@@ -1,21 +1,27 @@
 <template>
   <div id="nav">
-    {{info}}
+     <ul>
+       <li v-for="data in info" v-bind:key="data">
+         {{data.close}} dia {{data.date}} símbolo {{data.symbol}}
+       </li>
+     </ul>
   </div>
   <router-view/>
 </template>
 <script>
 import axios from 'axios'
+
 export default {
   data () {
     return {
-      info: null
+      info: null,
     }
   },
+  
   mounted () {
-    axios
-      .get('')
-      .then(response => (this.info = response.data))
+    axios.get('')
+      .then(response => (this.info = response.data.data))
+      .catch(err => (console.log(err)))
   }
 }
 </script>
